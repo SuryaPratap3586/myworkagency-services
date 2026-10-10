@@ -1,0 +1,2 @@
+{"name":"myworkagency","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","seed":"node --env-file=.env.local scripts/seed.mjs"},
+"dependencies":{"next":"^15.0.0","react":"^19.0.0","react-dom":"^19.0.0","mongoose":"^8.0.0","jsonwebtoken":"^9.0.2","bcryptjs":"^2.4.3"}}

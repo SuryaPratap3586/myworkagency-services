@@ -1,0 +1,15 @@
+import mongoose from 'mongoose';
+const { Schema, models, model } = mongoose;
+const S = String, pub = { type: Boolean, default: true };
+const mk = (n, s) => models[n] || model(n, new Schema(s, { timestamps: true }));
+export const Service = mk('Service', { title: S, slug: { type: S, unique: true, required: true }, description: S, icon: S, published: pub });
+export const Project = mk('Project', { title: S, slug: { type: S, unique: true, required: true }, description: S, category: S, image: S, url: S, video: S, published: pub });
+export const Post = mk('Post', { title: S, slug: { type: S, unique: true, required: true }, excerpt: S, content: S, image: S, category: S, keywords: [S], metaTitle: S, metaDescription: S, canonical: S, published: pub });
+export const Testimonial = mk('Testimonial', { name: S, role: S, quote: S, photo: S, rating: Number, published: pub });
+export const Lead = mk('Lead', { name: S, email: S, phone: S, company: S, service: S, budget: S, message: S, status: { type: S, default: 'New' } });
+export const User = mk('User', { email: { type: S, unique: true }, password: S });
+export const M = { services: Service, projects: Project, posts: Post, testimonials: Testimonial, leads: Lead };
+export const Setting = mk('Setting', { key: { type: S, unique: true }, data: Schema.Types.Mixed });
+export const Job = mk('Job', { title: S, slug: { type: S, unique: true, required: true }, department: S, location: S, type: S, salary: S, description: S, requirements: S, published: pub });
+export const Application = mk('Application', { job: S, jobSlug: S, name: S, email: S, phone: S, experience: S, resumeUrl: S, coverLetter: S, status: { type: S, default: 'New' } });
+M.jobs = Job; M.applications = Application;
